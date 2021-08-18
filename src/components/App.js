@@ -1,4 +1,3 @@
-
 import React, { Component, useState } from "react";
 import '../styles/App.css';
 
@@ -38,12 +37,48 @@ class App extends Component {
   }
 
   render() {
+    var city = ["Goa", "Darjeeling", "Lonavala"] ;
+    var indianLocations = this.cityList.filter((item, index) => {
+      if(item.country === "India" && city.includes(item.name)) {
+        city.splice(city.indexOf(item.name), 1) ;
+        return item ;
+      }
+    });
+    
+    var newList = [...indianLocations];
+    console.log(city) ;
+    
     return (
       <div id="main">
-        {/* Do not remove the main div */}
+        <ol type="cities">
+          {newList.map((item, index) => (
+            <li key={`location${index + 1}`}>{item.name}</li>
+          ))}
+        </ol>
       </div>
-    )
+    );
+
   }
+  // render() {
+  //   var city = ["Goa","Darjeeling","Lonavala"]
+  //   var indianLocations = this.cityList.filter((item, index) => {
+  //       if(item.country === "India" && city.includes(item.name)){
+  //           city.splice(city.indexOf(item.name),1);
+  //           return item ;
+  //       }
+  //   });
+  //   var newList = [...indianLocations];
+  //   console.log(city);
+  //   return (
+  //     <div id="main">
+  //       <ol type="cities">
+  //         {newList.map((item, index) => (
+  //           <li key={`location${index + 1}`}>{item.name}</li>
+  //         ))}
+  //       </ol>
+  //     </div>
+  //   );
+  // }
 }
 
 
